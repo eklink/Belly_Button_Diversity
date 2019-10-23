@@ -11,8 +11,9 @@ function buildMetadata(sample) {
       console.log(response)
         
       var table = d3.select("#sample-metadata").html("")
+      
       var cell = table.append("td");
-      Object.defineProperties(response).forEach(([key, value]) => {
+      Object.entries(response).forEach(([key, value]) => {
         var row = cell.append("tr");
         row.text(`${key}: ${value}`);
       });  
@@ -35,7 +36,7 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
   
   var plotDataset = `/samples/${sample}`
-  console.log("plotDataset=", plotData);
+  console.log("plotDataset=", plotDataset);
   d3.json(plotDataset).then(function(plotData){
     console.log("plotData=", plotData);
 
@@ -53,8 +54,9 @@ function buildCharts(sample) {
       y: plotData.sample_values,
       mode: "markers",
       marker: {
-        size: plotData.sample_values,
         color: plotData.otu_ids,
+        size: plotData.sample_values
+        
         
       },
       text: plotData.otu_labels
@@ -86,7 +88,7 @@ function buildCharts(sample) {
       width: 600,
     };
 
-    Plotly.newplot("pie", pieData, pieLayout)
+    Plotly.newplot("pie", pieData, pieLayout);
 
   });
     console.log("build charts function");
@@ -112,7 +114,7 @@ function init() {
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
-    console.log("in the end of init function")
+    console.log("in the end of init function");
   });
 }
 
