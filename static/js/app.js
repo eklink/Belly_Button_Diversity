@@ -49,7 +49,7 @@ function buildCharts(sample) {
 //})
     // @TODO: Build a Bubble Chart using the sample data
 
-    var bubbleData = {
+    var bubbleChart = {
       x: plotData.otu_ids,
       y: plotData.sample_values,
       mode: "markers",
@@ -74,7 +74,7 @@ function buildCharts(sample) {
 
     // @TODO: Build a Pie Chart
 
-    var pieData = {
+    var pieChart = {
       values: plotData.sample_values.slice(0,10),
       labels: plotData.otu_ids.slice(0,10),
       text: plotData.otu_labels.slice(0,10),
@@ -88,7 +88,7 @@ function buildCharts(sample) {
       width: 600,
     };
 
-    Plotly.newplot("pie", pieData, pieLayout);
+    Plotly.newPlot("pie", pieData, pieLayout);
 
   });
     console.log("build charts function");
